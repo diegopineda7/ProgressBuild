@@ -1,10 +1,12 @@
 import { createAppContainer, createStackNavigator } from "react-navigation";
 import Home from "./screens/Home";
+import SignUp from "./screens/SignUp";
 import GuiaEjercicios from "./screens/GuiaEjercicios";
 import Ejercicio from "./screens/Ejercicio";
 
 const MainNavigator = createStackNavigator({
   Home: {screen: Home},
+  Signup: {screen: SignUp},
   Guia: {screen: GuiaEjercicios},
   Ejercicio: {screen: Ejercicio}
 },
@@ -16,8 +18,9 @@ const MainNavigator = createStackNavigator({
     },
     headerTitleStyle: {
       color: '#fff'
-    }
-  }
+    },
+  },
+  initialRouteName: 'Signup'
 });
 
 const App = createAppContainer(MainNavigator);
