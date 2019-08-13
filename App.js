@@ -1,19 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer, createStackNavigator } from "react-navigation";
+import Home from "./screens/Home";
+import GuiaEjercicios from "./screens/GuiaEjercicios";
+import Ejercicio from "./screens/Ejercicio";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const MainNavigator = createStackNavigator({
+  Home: {screen: Home},
+  Guia: {screen: GuiaEjercicios},
+  Ejercicio: {screen: Ejercicio}
+},
+{
+  defaultNavigationOptions: {
+    headerTintColor: '#fff',
+    headerStyle: {
+      backgroundColor: '#A73C07'
+    },
+    headerTitleStyle: {
+      color: '#fff'
+    }
+  }
 });
+
+const App = createAppContainer(MainNavigator);
+export default App;
