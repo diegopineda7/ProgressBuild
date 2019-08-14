@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { Form, Item, Label, Input, Button } from 'native-base';
 import * as ImagePicker from 'expo-image-picker';
+import * as firebase from 'firebase';
 
 export default class Signup extends React.Component {
   constructor(props) {
@@ -17,6 +18,17 @@ export default class Signup extends React.Component {
     header: null
   };
 
+  signUpUser = (name, email, password) => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(async result => {
+        await result.user.updateProfile({displayName: name});
+        this.props.navigation.replace('Home');
+      })
+      .catch(error => {
+        alert(error.message);
+      })
+  }
+
   render() {
     return (
       <TouchableWithoutFeedback
@@ -31,7 +43,7 @@ export default class Signup extends React.Component {
             <Image
               source = {require('../assets/icon.png')}
             />
-            <Text style={styles.logoText}>Bienvenido a ProgressBuild</Text>
+            <Text style={styles.logoText}>Bienvenido a ProgressBuild!</Text>
           </View>
           <Form style = {styles.form}>
             <Item floatingLabel
@@ -43,6 +55,9 @@ export default class Signup extends React.Component {
                 autoCorrect = {false}
                 autoCapitalize = 'words'
                 keyboardType = 'name-phone-pad'
+                onChangeText = {name => {
+                  this.setState({name})
+                }}
               />
             </Item>
             <Item floatingLabel
@@ -54,6 +69,9 @@ export default class Signup extends React.Component {
                 autoCorrect = {false}
                 autoCapitalize = 'none'
                 keyboardType = 'email-address'
+                onChangeText = {email => {
+                  this.setState({email})
+                }}
               />
             </Item>
             <Item floatingLabel
@@ -66,6 +84,9 @@ export default class Signup extends React.Component {
                 autoCorrect = {false}
                 autoCapitalize = 'none'
                 keyboardType = 'default'
+                onChangeText = {password => {
+                  this.setState({password})
+                }}
               />
             </Item>
           </Form>
@@ -73,7 +94,7 @@ export default class Signup extends React.Component {
             full rounded success
             style = {styles.button}
             onPress = {() => {
-
+              this.signUpUser(this.state.name, this.state.email, this.state.password);
             }}
           >
             <Text style = {styles.buttonText}>Empecemos!</Text>
@@ -82,7 +103,7 @@ export default class Signup extends React.Component {
             <TouchableOpacity
             style={styles.touchableFooter}
             onPress = {() => {
-
+              this.props.navigation.navigate('Signin')
             }}
             >
               <Text style = {styles.footerText}>Ya tienes una cuenta?</Text>
@@ -141,7 +162,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     alignItems: 'center',
-    marginTop: 15
+    marginTop: 30
   },
   touchableFooter: {
     backgroundColor: 'rgba(4, 68, 23, .5)',
@@ -150,6 +171,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: '#fff',
-    fontSize: 20
+    fontSize: 22,
+    paddingHorizontal: 10
   }
 });
