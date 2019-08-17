@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 import { Form, Item, Label, Input, Button } from 'native-base';
 import * as firebase from 'firebase';
-import globalStyles from "../styles/globalStyles";
+import { globalStyles } from "../styles/globalStyles";
 
 export default class SignIn extends React.Component {
   constructor(props) {

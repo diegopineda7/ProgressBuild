@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-export default globalStyles = StyleSheet.create({
+const mainColor = '#A73C07';
+
+const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#A73C07',
+    backgroundColor: mainColor,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -63,3 +65,8 @@ export default globalStyles = StyleSheet.create({
     paddingHorizontal: 10
   }
 });
+
+module.exports = {
+  mainColor,
+  globalStyles
+}
