@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button, Card, CardItem } from 'native-base';
-import* as firebase from 'firebase';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground } from 'react-native';
+import { Button } from 'native-base';
+import * as firebase from 'firebase';
 import { mainColor } from "../styles/globalStyles";
 
 export default class Home extends React.Component {
@@ -12,6 +12,7 @@ export default class Home extends React.Component {
       email: ''
     };
   }
+
   static navigationOptions = {
     title: 'ProgressBuild'
   };
@@ -36,28 +37,48 @@ export default class Home extends React.Component {
     });
   }
 
+  primerNmombre = nombre => {
+    const partes = nombre.split(' ');
+    return partes[0];
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <View style = {styles.container}>
         <Button full rounded
-          style={styles.buttonUser}
+          style = {styles.buttonUser}
           onPress = {() => {
             this.props.navigation.navigate('Micuenta');
           }}
         >
-          <Text style={styles.textButtonUser}>Mi Cuenta</Text>
+          <Text style = {styles.textButtonUser}>Mi Cuenta</Text>
         </Button>
-        <View style = {styles.infoUser}>
-          <Card>
-            <CardItem>
-              <Text>{this.state.name}</Text>
-            </CardItem>
-            </Card>
-            <Card>
-            <CardItem>
-              <Text>{this.state.email}</Text>
-            </CardItem>
-          </Card>
+        <Text style = {styles.welcomeText}>Hola {this.primerNmombre(this.state.name)}</Text>
+        <View style = {styles.viewModulos}>
+          <TouchableOpacity style = {styles.modulo}
+            onPress = {() => {
+              this.props.navigation.navigate('Guia');
+            }}
+          >
+            <ImageBackground
+              style = {styles.imageModulo}
+              source={require('../assets/no_photo.png')}
+            >
+              <Text style = {styles.textModulo}>Guía de ejercicios</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+          <TouchableOpacity style = {styles.modulo}
+            onPress = {() => {
+              this.props.navigation.navigate('Registrar');
+            }}
+          >
+            <ImageBackground
+              style = {styles.imageModulo}
+              source={require('../assets/no_photo.png')}
+            >
+              <Text style = {styles.textModulo}>Registrar entrenamiento</Text>
+            </ImageBackground>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -71,6 +92,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  welcomeText: {
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
   buttonUser: {
     backgroundColor: mainColor,
     position: "absolute",
@@ -81,5 +106,29 @@ const styles = StyleSheet.create({
     fontSize: 17,
     padding: 20,
     color: '#fff'
+  },
+  viewModulos: {
+    marginTop: 30,
+    flex: .4,
+    width: '95%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  modulo: {
+    backgroundColor: mainColor,
+    width: '48%',
+    borderRadius: 15
+  },
+  imageModulo: {
+    width: '100%',
+    height: '100%',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  textModulo: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#000'
   }
 });

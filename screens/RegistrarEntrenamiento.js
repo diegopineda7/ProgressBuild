@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class GuiaEjercicios extends React.Component {
+export default class RegistrarEntrenamiento extends React.Component {
   static navigationOptions = {
-    title: 'Guía de ejercicios'
+    title: 'Registrar entrenamiento'
   };
 
   render() {
     return (
       <View style = {styles.container}>
-        <Text>Guia</Text>
+        <Text>Registrar entrenamiento</Text>
       </View>
     );
   }

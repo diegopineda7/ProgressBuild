@@ -23,7 +23,6 @@ export default class Loading extends React.Component {
       <View style={styles.container}>
         <View style = {styles.logo}>
           <Image
-            style = {styles.image}
             source = {require('../assets/icon.png')}
           />
           <Text style={styles.logoText}>Bienvenido a ProgressBuild!</Text>
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    alignItems: "center"
+    alignItems: 'center'
   },
   logoText: {
     fontSize: 25,
