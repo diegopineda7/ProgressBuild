@@ -7,10 +7,10 @@ const globalStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: mainColor,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   logo: {
-    alignItems: "center"
+    alignItems: 'center'
   },
   image: {
     width: 120,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 import { Button } from 'native-base';
 import * as firebase from 'firebase';
 import { mainColor } from "../styles/globalStyles";
@@ -53,7 +53,7 @@ export default class Home extends React.Component {
         >
           <Text style = {styles.textButtonUser}>Mi Cuenta</Text>
         </Button>
-        <Text style = {styles.welcomeText}>Hola {this.primerNmombre(this.state.name)}</Text>
+        <Text style = {styles.welcomeText}>Bienvenido {this.primerNmombre(this.state.name)}</Text>
         <View style = {styles.viewModulos}>
           <TouchableOpacity style = {styles.modulo}
             onPress = {() => {
@@ -62,7 +62,8 @@ export default class Home extends React.Component {
           >
             <ImageBackground
               style = {styles.imageModulo}
-              source={require('../assets/no_photo.png')}
+              imageStyle = {styles.imageModulo}
+              source = {require('../assets/guia.jpg')}
             >
               <Text style = {styles.textModulo}>Guía de ejercicios</Text>
             </ImageBackground>
@@ -74,7 +75,8 @@ export default class Home extends React.Component {
           >
             <ImageBackground
               style = {styles.imageModulo}
-              source={require('../assets/no_photo.png')}
+              imageStyle = {styles.imageModulo}
+              source = {require('../assets/modulo_registro.jpg')}
             >
               <Text style = {styles.textModulo}>Registrar entrenamiento</Text>
             </ImageBackground>
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
   },
   buttonUser: {
     backgroundColor: mainColor,
-    position: "absolute",
+    position: 'absolute',
     top: 10,
     right: 10,
   },
@@ -115,20 +117,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   modulo: {
-    backgroundColor: mainColor,
-    width: '48%',
-    borderRadius: 15
+    width: '48%'
   },
   imageModulo: {
     width: '100%',
     height: '100%',
     alignContent: 'center',
     justifyContent: 'center',
+    borderRadius: 15
   },
   textModulo: {
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#000'
+    color: '#fff',
+    backgroundColor: 'rgba(0, 0, 0, .4)'
   }
 });

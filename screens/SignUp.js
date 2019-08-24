@@ -91,8 +91,7 @@ export default class Signup extends React.Component {
               />
             </Item>
           </Form>
-          <Button
-            full rounded success
+          <Button full rounded success
             style = {styles.button}
             onPress = {() => {
               this.signUpUser(this.state.name, this.state.email, this.state.password);
