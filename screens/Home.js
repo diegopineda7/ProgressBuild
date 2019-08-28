@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react
 import { Button } from 'native-base';
 import * as firebase from 'firebase';
 import { mainColor } from "../styles/globalStyles";
+import { Stitch, UserPasswordCredential, RemoteMongoClient } from 'mongodb-stitch-react-native-sdk';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      client: undefined,
       name: '',
       email: ''
     };
@@ -18,6 +20,7 @@ export default class Home extends React.Component {
   };
   
   componentDidMount() {
+    //Firebase Config
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({
@@ -27,6 +30,20 @@ export default class Home extends React.Component {
       } else {
         this.props.navigation.replace('Signin');
       }
+    });
+
+    //Mongo Config
+    Stitch.initializeDefaultAppClient('progressbuild-lrkpa')
+      .then(client => {
+        client.auth.loginWithCredential(new UserPasswordCredential('diego7@gmail.com', 'mente777'))
+          .then(user => {
+            console.log(`Successfully logged in as user ${user.id}`);
+            const mongoClient = client.getServiceClient(
+              RemoteMongoClient.factory,
+              'mongodb-atlas'
+            );
+            this.setState({client: mongoClient});
+          })
     });
   }
 
@@ -57,7 +74,7 @@ export default class Home extends React.Component {
         <View style = {styles.viewModulos}>
           <TouchableOpacity style = {styles.modulo}
             onPress = {() => {
-              this.props.navigation.navigate('Guia');
+              this.props.navigation.navigate('Guia', {client: this.state.client});
             }}
           >
             <ImageBackground

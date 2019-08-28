@@ -3,7 +3,6 @@ import { StyleSheet, Text, ImageBackground, TouchableWithoutFeedback, Alert, Key
 import { Form, Item, Label, Input, Button } from 'native-base';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import { ScrollView } from 'react-native-gesture-handler';
-import { empujeRef } from '../Firebase';
 
 export default class RegistrarEntrenamiento extends React.Component {
   constructor(props) {
@@ -46,8 +45,6 @@ export default class RegistrarEntrenamiento extends React.Component {
       alert('no');
     }
   }
-
-  
 
   render() {
     return (

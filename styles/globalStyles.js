@@ -66,7 +66,7 @@ const globalStyles = StyleSheet.create({
   }
 });
 
-module.exports = {
+export {
   mainColor,
   globalStyles
-}
+};

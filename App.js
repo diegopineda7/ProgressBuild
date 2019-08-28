@@ -8,8 +8,7 @@ import GuiaEjercicios from './screens/GuiaEjercicios';
 import Ejercicio from './screens/Ejercicio';
 import RegistrarEntrenamiento from './screens/RegistrarEntrenamiento';
 import { mainColor } from "./styles/globalStyles";
-import * as firebase from 'firebase';
-import { firebaseConfig } from './Firebase'
+import { firebaseConfig } from './Database'
 
 const MainNavigator = createStackNavigator({
   Loading: {screen: Loading},
@@ -31,7 +30,7 @@ const MainNavigator = createStackNavigator({
       color: '#fff'
     },
   },
-  initialRouteName: 'Guia'
+  initialRouteName: 'Loading'
 });
 
 const App = createAppContainer(MainNavigator);
