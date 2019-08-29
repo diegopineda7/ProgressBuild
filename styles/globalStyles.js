@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const mainColor = '#A73C07';
+const mainColorRGB = '167, 60, 7';
 
 const globalStyles = StyleSheet.create({
   container: {
@@ -68,5 +69,6 @@ const globalStyles = StyleSheet.create({
 
 export {
   mainColor,
+  mainColorRGB,
   globalStyles
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, ScrollView, View, ActivityIndicator, FlatList } from 'react-native';
 import { mainColor } from "../styles/globalStyles";
 import CategEjercicio from '../components/CategEjercicio';
 
@@ -33,7 +33,7 @@ export default class GuiaEjercicios extends React.Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style = {styles.container}>
+        <View style = {styles.containerLoading}>
           <ActivityIndicator
             size = 'large'
             color = {mainColor}
@@ -42,26 +42,32 @@ export default class GuiaEjercicios extends React.Component {
       );
     }
     return (
-      <View style = {styles.container}>
+      <ScrollView style = {styles.container}>
         <FlatList
           data = {this.state.ejercicios}
           renderItem = {({ item }) => {
             return (
-              <CategEjercicio item = {item} />
+              <CategEjercicio item = {item}
+                navigation = {this.props.navigation}
+              />
             );
           }}
           keyExtractor = {(item, index) => item._id.toString()}
         />
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerLoading: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
   }
 });

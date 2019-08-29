@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import ListadoGruposMusculares from '../components/ListadoGruposMusculares';
-import { MaterialIcons } from '@expo/vector-icons'
+import ListadoGruposMusculares from '../screens/ListadoGruposMusculares';
+import { FontAwesome } from '@expo/vector-icons'
+import { mainColorRGB } from "../styles/globalStyles";
 
 export default class CategEjercicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nombreIcon: 'expand-more',
+      nombreIcon: 'angle-down',
       visible: false
     };
     this.grupoMuscularElement = React.createRef();
@@ -18,7 +19,7 @@ export default class CategEjercicio extends React.Component {
     
     this.setState({
       visible: !this.state.visible,
-      nombreIcon: this.state.visible ? 'expand-more' : 'expand-less'
+      nombreIcon: this.state.visible ? 'angle-down' : 'angle-up'
     });
   }
 
@@ -30,8 +31,8 @@ export default class CategEjercicio extends React.Component {
             this.cambiarVisibilidad();
           }}
         >
-          <Text style = {styles.text}>{this.props.item.name}</Text>
-          <MaterialIcons
+          <Text style = {styles.textTipo}>{this.props.item.name}</Text>
+          <FontAwesome
             name = {this.state.nombreIcon}
             style = {styles.icon}
           />
@@ -39,6 +40,7 @@ export default class CategEjercicio extends React.Component {
         <ListadoGruposMusculares
           ref = {this.grupoMuscularElement}
           item = {this.props.item}
+          navigation = {this.props.navigation}
         />
       </View>
     );
@@ -50,19 +52,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: '100%',
-    backgroundColor: 'rgba(167, 60, 7, .9)',
+    backgroundColor: 'rgba(' + mainColorRGB + ', .9)',
     marginVertical: 10,
     height: 50
   },
-  text: {
-    fontSize: 20,
+  textTipo: {
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#fff'
   },
   icon: {
     position: 'absolute',
-    fontSize: 60,
+    fontSize: 40,
     color: '#fff',
-    right: 5
+    right: 15
   }
 });

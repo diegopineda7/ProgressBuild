@@ -7,7 +7,7 @@ import SignIn from './screens/SignIn';
 import GuiaEjercicios from './screens/GuiaEjercicios';
 import Ejercicio from './screens/Ejercicio';
 import RegistrarEntrenamiento from './screens/RegistrarEntrenamiento';
-import { mainColor } from "./styles/globalStyles";
+import { mainColor } from './styles/globalStyles';
 import { firebaseConfig } from './Database'
 
 const MainNavigator = createStackNavigator({
@@ -18,7 +18,7 @@ const MainNavigator = createStackNavigator({
   Signin: {screen: SignIn},
   Guia: {screen: GuiaEjercicios},
   Ejercicio: {screen: Ejercicio},
-  Registrar: {screen: RegistrarEntrenamiento},
+  Registrar: {screen: RegistrarEntrenamiento}
 },
 {
   defaultNavigationOptions: {
