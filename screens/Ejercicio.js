@@ -12,19 +12,26 @@ export default class Ejercicio extends React.Component {
       grupoMuscular: '',
       equipo: '',
       sugerencias: '',
-      riesgos: ''
+      riesgos: '',
+      image: ''
     };
-  }
-
-  componentWillMount() {
-    this.setState({
-      nombre: this.props.navigation.getParam('ejercicio', '').name
-    })
   }
 
   static navigationOptions = {
     title: 'Información del ejercicio'
   };
+
+  componentWillMount() {
+    this.setState({
+      nombre: this.props.navigation.getParam('ejercicio', '').name,
+      grupoMuscular: this.props.navigation.getParam('grupo', '')
+    })
+  }
+
+  //TODO:
+  getEjercicio = id => {
+
+  }
 
   render() {
     return (

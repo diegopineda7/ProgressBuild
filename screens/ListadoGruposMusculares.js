@@ -15,17 +15,13 @@ export default class ListadoGruposMusculares extends React.Component {
     this.setState({visible: !this.state.visible});
   }
 
-  navegar = item => {
-    
-    //this.props.navigation.navigate('Ejercicio', {ejercicio: item});
-  }
-
   render() {
     if (this.state.visible) {
       return (
         <FlatList
           data = {this.props.item.grupos_musculares}
           renderItem = {({ item }) => {
+            const grupo = item.name;
             return (
               <View style = {styles.viewGrupo}>
                 <View style = {styles.grupoIcon}>
@@ -36,13 +32,15 @@ export default class ListadoGruposMusculares extends React.Component {
                   <Text style = {styles.textGrupo}>{item.name}</Text>
                 </View>
                 <FlatList
-                  style = {styles.listaGrupos}
                   data = {item.ejercicios}
                   renderItem = {({ item }) => {
                     return (
                       <TouchableOpacity
                         onPress = {() => {
-                          this.props.navigation.navigate('Ejercicio', {ejercicio: item});
+                          this.props.navigation.navigate('Ejercicio', {
+                            ejercicio: item,
+                            grupo
+                          });
                         }}
                         style = {styles.ejercicio}
                       >
@@ -51,6 +49,7 @@ export default class ListadoGruposMusculares extends React.Component {
                     );
                   }}
                   keyExtractor = {(item, index) => index.toString()}
+                  numColumns = {2}
                 />
               </View>
             );
@@ -67,6 +66,7 @@ export default class ListadoGruposMusculares extends React.Component {
 const styles = StyleSheet.create({
   viewGrupo: {
     flex: 1,
+    marginTop: 10
   },
   grupoIcon: {
     flexDirection: 'row',
@@ -83,14 +83,18 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   ejercicio: {
-    minWidth: '100%',
-    height: 40,
+    minWidth: '46%',
+    maxWidth: '46%',
+    height: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 3
+    backgroundColor: '#9194F5',
+    marginLeft: 10,
+    borderRadius: 10
   },
   textEjercicio: {
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center'
   }
 });

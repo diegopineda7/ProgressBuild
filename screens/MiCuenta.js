@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
-import { Image  as ReactImage } from 'react-native';
+import { StyleSheet, Text, Image, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { Form, Item, Label, Input, Button } from 'native-base';
 import * as ImagePicker from 'expo-image-picker';
 import * as firebase from 'firebase';
@@ -138,7 +137,7 @@ export default class MiCuenta extends React.Component {
               this.seleccionarFoto();
             }}
           >
-            <ReactImage
+            <Image
               style = {styles.image}
               source = {
                 this.state.imageDownloadUrl === 'empty'

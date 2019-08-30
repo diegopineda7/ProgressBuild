@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     minWidth: '100%',
     backgroundColor: 'rgba(' + mainColorRGB + ', .9)',
-    marginVertical: 10,
+    marginTop: 10,
     height: 50
   },
   textTipo: {

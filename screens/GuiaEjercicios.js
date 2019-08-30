@@ -54,6 +54,7 @@ export default class GuiaEjercicios extends React.Component {
           }}
           keyExtractor = {(item, index) => item._id.toString()}
         />
+        <View style = {styles.espacio}></View>
       </ScrollView>
     );
   }
@@ -69,5 +70,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  espacio: {
+    height: 50
   }
 });
