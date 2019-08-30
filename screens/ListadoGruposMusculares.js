@@ -44,7 +44,9 @@ export default class ListadoGruposMusculares extends React.Component {
                         }}
                         style = {styles.ejercicio}
                       >
-                        <Text style = {styles.textEjercicio}>{item.name}</Text>
+                        <View style = {styles.viewTextoEjercicio}>
+                          <Text style = {styles.textEjercicio}>{item.name}</Text>
+                        </View>
                       </TouchableOpacity>
                     );
                   }}
@@ -88,12 +90,18 @@ const styles = StyleSheet.create({
     height: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#9194F5',
     marginLeft: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    borderWidth: 2
+  },
+  viewTextoEjercicio: {
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,.3)',
+    height: 50,
+    justifyContent: 'center'
   },
   textEjercicio: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center'
   }
