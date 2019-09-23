@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, ImageBackground, TouchableWithoutFeedback, Alert, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { Form, Item, Label, Input, Button } from 'native-base';
 import SearchableDropdown from 'react-native-searchable-dropdown';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default class RegistrarEntrenamiento extends React.Component {
   constructor(props) {
@@ -24,7 +23,7 @@ export default class RegistrarEntrenamiento extends React.Component {
     await this.setState({ client: this.props.navigation.getParam('client', '') });
     var ejercicios = await this.state.client.db('ProgressBuild').collection('Ejercicios');
     await ejercicios.find().asArray()
-      .then(async items => {
+      .then(items => {
         var ejercicios = [];
         items.map(function(item) {
           const idItem = item.id;
@@ -40,7 +39,7 @@ export default class RegistrarEntrenamiento extends React.Component {
             })
           })
         })
-        await this.setState({
+        this.setState({
           items: ejercicios,
           isLoading: false
         });
@@ -57,7 +56,7 @@ export default class RegistrarEntrenamiento extends React.Component {
     ) {
       Alert.alert('Listo!', 'Entrenamiento guardado exitosamente');
     } else {
-      alert('no');
+      Alert.alert('Campos incompletos', 'Tienes campos sin llenar, por favor llena todos los campos');
     }
   }
 
@@ -89,25 +88,24 @@ export default class RegistrarEntrenamiento extends React.Component {
                 <Label style = {styles.label}>Ejercicio</Label>
                 <SearchableDropdown
                   onItemSelect = {item => {
-                    this.setState({ejercicio: item.ejercicio})
+                    this.setState({ejercicio: item.name});
                   }}
-                  containerStyle = {{ padding: 5, width: 200 }}
+                  containerStyle = {{ padding: 5, width: 250 }}
                   itemStyle = {{
                     padding: 10,
                     marginTop: 2,
                     backgroundColor: '#fff',
                     borderRadius: 5,
-                    width: 190
+                    width: 220
                   }}
                   itemTextStyle = {{ color: '#000', fontSize: 20 }}
-                  itemsContainerStyle = {{ maxHeight: 200 }}
+                  itemsContainerStyle = {{ maxHeight: 300 }}
                   items = {this.state.items}
-                  textInputStyle = {styles.input}
                   textInputProps = {{
-                    style: [styles.input,
-                    {
-                      padding: 8
-                    }]
+                    style: [
+                      styles.input,
+                      styles.inputEjercicio
+                    ]
                   }}
                   listProps = {{
                     nestedScrollEnabled: true,
@@ -139,7 +137,7 @@ export default class RegistrarEntrenamiento extends React.Component {
                 />
               </Item>
               <Item style = {styles.item}>
-                <Label style = {styles.label}>Carga</Label>
+                <Label style = {styles.label}>Carga (kg)</Label>
                 <Input
                   style = {styles.input}
                   autoCorrect = {false}
@@ -198,6 +196,10 @@ const styles = StyleSheet.create({
   input: {
     color: '#fff',
     fontSize: 22
+  },
+  inputEjercicio: {
+    padding: 8,
+    height: 80
   },
   picker: {
     color: '#fff',
