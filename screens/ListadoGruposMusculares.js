@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default class ListadoGruposMusculares extends React.Component {
@@ -44,9 +44,15 @@ export default class ListadoGruposMusculares extends React.Component {
                         }}
                         style = {styles.ejercicio}
                       >
-                        <View style = {styles.viewTextoEjercicio}>
-                          <Text style = {styles.textEjercicio}>{item.name}</Text>
-                        </View>
+                        <ImageBackground
+                          style = {styles.imageEjercicio}
+                          imageStyle = {[styles.imageEjercicio, {opacity: .3}]}
+                          source = {require('../assets/no_photo.png')}
+                        >
+                          <View style = {styles.viewTextoEjercicio}>
+                            <Text style = {styles.textEjercicio}>{item.name}</Text>
+                          </View>
+                        </ImageBackground>
                       </TouchableOpacity>
                     );
                   }}
@@ -93,6 +99,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     borderRadius: 10,
     borderWidth: 2
+  },
+  imageEjercicio: {
+    width: '100%',
+    height: '100%',
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderRadius: 10
   },
   viewTextoEjercicio: {
     width: '100%',

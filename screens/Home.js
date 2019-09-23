@@ -87,7 +87,7 @@ export default class Home extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity style = {styles.modulo}
             onPress = {() => {
-              this.props.navigation.navigate('Registrar');
+              this.props.navigation.navigate('Registrar', {client: this.state.client});
             }}
           >
             <ImageBackground

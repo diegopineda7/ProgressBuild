@@ -39,10 +39,10 @@ export default class Ejercicio extends React.Component {
         <View style = {styles.container}>
           <Text style = {styles.titulo}>{this.state.nombre}</Text>
           <View style = {styles.info}>
-            {/* <Image
+            <Image
               style = {styles.image}
-              source = {require('../assets/press_banca_plano.png')}
-            /> */}
+              source = {require('../assets/no_photo.png')}
+            />
             <Card style = {styles.card}>
               <CardItem style = {styles.cardItemDato}>
                 <Text style = {styles.itemDato}>Grupo(s) Muscular(es)</Text>

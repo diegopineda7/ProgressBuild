@@ -12,26 +12,41 @@ export default class RegistrarEntrenamiento extends React.Component {
       series: '',
       repeticiones: '',
       carga: '',
-      items: [
-        {
-          id: 1,
-          name: 'Pecho'
-        },
-        {
-          id: 2,
-          name: 'Pierna'
-        },
-        {
-          id: 3,
-          name: 'Espalda'
-        }
-      ]
+      items: []
     };
   }
 
   static navigationOptions = {
     title: 'Registrar entrenamiento'
   };
+
+  async componentDidMount() {
+    await this.setState({ client: this.props.navigation.getParam('client', '') });
+    var ejercicios = await this.state.client.db('ProgressBuild').collection('Ejercicios');
+    await ejercicios.find().asArray()
+      .then(async items => {
+        var ejercicios = [];
+        items.map(function(item) {
+          const idItem = item.id;
+          item.grupos_musculares.map(function(grupo) {
+            const idGrupo = grupo.id;
+            grupo.ejercicios.map(function(ejercicio) {
+              const idEjercicio = ejercicio.id;
+              const objEjercicio = {
+                id: '' + idItem + idGrupo + idEjercicio,
+                name: ejercicio.name
+              };
+              ejercicios.push(objEjercicio);
+            })
+          })
+        })
+        await this.setState({
+          items: ejercicios,
+          isLoading: false
+        });
+      })
+      .catch(err => console.error(`Failed to find documents: ${err}`))
+  }
 
   guadarRegistro = () => {
     if (
@@ -47,6 +62,16 @@ export default class RegistrarEntrenamiento extends React.Component {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <View style = {styles.containerLoading}>
+          <ActivityIndicator
+            size = 'large'
+            color = {mainColor}
+          />
+        </View>
+      );
+    }
     return (
       <TouchableWithoutFeedback
         onPress = {() => {Keyboard.dismiss()}}
