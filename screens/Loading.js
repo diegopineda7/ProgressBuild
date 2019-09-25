@@ -28,8 +28,8 @@ export default class Loading extends React.Component {
           <Text style={styles.logoText}>Bienvenido a ProgressBuild!</Text>
         </View>
         <ActivityIndicator
-          size='large'
-          color='#fff'
+          size = 'large'
+          color = '#fff'
         />
       </View>
     );

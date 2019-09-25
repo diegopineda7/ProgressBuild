@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, ImageBackground, TouchableWithoutFeedback, Alert, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, TouchableWithoutFeedback, Alert, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { Form, Item, Label, Input, Button } from 'native-base';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
@@ -63,7 +63,7 @@ export default class RegistrarEntrenamiento extends React.Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style = {styles.containerLoading}>
+        <View style = {styles.container}>
           <ActivityIndicator
             size = 'large'
             color = {mainColor}
@@ -99,13 +99,14 @@ export default class RegistrarEntrenamiento extends React.Component {
                     width: 220
                   }}
                   itemTextStyle = {{ color: '#000', fontSize: 20 }}
-                  itemsContainerStyle = {{ maxHeight: 300 }}
+                  itemsContainerStyle = {{ maxHeight: 400 }}
                   items = {this.state.items}
                   textInputProps = {{
                     style: [
                       styles.input,
                       styles.inputEjercicio
-                    ]
+                    ],
+                    multiline: true,
                   }}
                   listProps = {{
                     nestedScrollEnabled: true,
@@ -147,7 +148,6 @@ export default class RegistrarEntrenamiento extends React.Component {
                     this.setState({carga});
                   }}
                 />
-                <Text>Select para kg, lbs</Text>
               </Item>
             </Form>
             <Button full rounded
@@ -176,7 +176,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignContent: 'center',
-    justifyContent: 'center'
   },
    form: {
     width: '100%',
@@ -198,12 +197,8 @@ const styles = StyleSheet.create({
     fontSize: 22
   },
   inputEjercicio: {
-    padding: 8,
-    height: 80
-  },
-  picker: {
-    color: '#fff',
-    fontSize: 30
+    padding: 5,
+    height: 60
   },
   button: {
     backgroundColor: '#fff',

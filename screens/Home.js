@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, ActivityIndicator } from 'react-native';
 import { Button } from 'native-base';
 import * as firebase from 'firebase';
 import { mainColor } from "../styles/globalStyles";
@@ -11,7 +11,8 @@ export default class Home extends React.Component {
     this.state = {
       client: undefined,
       name: '',
-      email: ''
+      email: '',
+      isLoading: true
     };
   }
 
@@ -37,12 +38,14 @@ export default class Home extends React.Component {
       .then(client => {
         client.auth.loginWithCredential(new UserPasswordCredential('diego7@gmail.com', 'mente777'))
           .then(user => {
-            console.log(`Successfully logged in as user ${user.id}`);
             const mongoClient = client.getServiceClient(
               RemoteMongoClient.factory,
               'mongodb-atlas'
             );
-            this.setState({client: mongoClient});
+            this.setState({
+              client: mongoClient,
+              isLoading: false
+            });
           })
     });
   }
@@ -60,6 +63,16 @@ export default class Home extends React.Component {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <View style={styles.container}>
+        <ActivityIndicator
+          size = 'large'
+          color = {mainColor}
+        />
+      </View>
+      );
+    }
     return (
       <View style = {styles.container}>
         <Button full rounded
