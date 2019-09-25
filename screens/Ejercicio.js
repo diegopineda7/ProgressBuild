@@ -24,7 +24,8 @@ export default class Ejercicio extends React.Component {
   componentWillMount() {
     this.setState({
       nombre: this.props.navigation.getParam('ejercicio', '').name,
-      grupoMuscular: this.props.navigation.getParam('grupo', '')
+      grupoMuscular: this.props.navigation.getParam('grupo', ''),
+      image: this.props.navigation.getParam('ejercicio', '').urlImage
     })
   }
 
@@ -41,7 +42,7 @@ export default class Ejercicio extends React.Component {
           <View style = {styles.info}>
             <Image
               style = {styles.image}
-              source = {require('../assets/no_photo.png')}
+              source = {this.state.image === '' ? require('../assets/no_photo.png') : {uri: this.state.image}}
             />
             <Card style = {styles.card}>
               <CardItem style = {styles.cardItemDato}>
