@@ -29,11 +29,6 @@ export default class Ejercicio extends React.Component {
     })
   }
 
-  //TODO:
-  getEjercicio = id => {
-
-  }
-
   render() {
     return (
       <ScrollView>
@@ -46,7 +41,7 @@ export default class Ejercicio extends React.Component {
             />
             <Card style = {styles.card}>
               <CardItem style = {styles.cardItemDato}>
-                <Text style = {styles.itemDato}>Grupo(s) Muscular(es)</Text>
+                <Text style = {styles.itemDato}>Grupo Muscular</Text>
               </CardItem>
               <CardItem>
                 <Text style = {styles.itemInfo}>{this.state.grupoMuscular}</Text>

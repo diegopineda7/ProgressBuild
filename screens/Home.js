@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, ActivityIndicator, Alert } from 'react-native';
 import { Button } from 'native-base';
 import * as firebase from 'firebase';
 import { mainColor } from "../styles/globalStyles";
@@ -83,7 +83,7 @@ export default class Home extends React.Component {
         >
           <Text style = {styles.textButtonUser}>Mi Cuenta</Text>
         </Button>
-        <Text style = {styles.welcomeText}>Bienvenido {this.primerNmombre(this.state.name)}</Text>
+        <Text style = {styles.welcomeText}>Bienvenido, {this.primerNmombre(this.state.name)}!</Text>
         <View style = {styles.viewModulos}>
           <TouchableOpacity style = {styles.modulo}
             onPress = {() => {
@@ -112,6 +112,21 @@ export default class Home extends React.Component {
             </ImageBackground>
           </TouchableOpacity>
         </View>
+        <View style = {styles.viewModulos}>
+          <TouchableOpacity style = {styles.modulo}
+            onPress = {() => {
+              Alert.alert('Navegación', 'Módulo de progreso');
+            }}
+          >
+            <ImageBackground
+              style = {styles.imageModulo}
+              imageStyle = {styles.imageModulo}
+              source = {require('../assets/modulo_registro.jpg')}
+            >
+              <Text style = {styles.textModulo}>Ver mi progreso</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -126,7 +141,8 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 30,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginVertical: 10
   },
   buttonUser: {
     backgroundColor: mainColor,
@@ -140,13 +156,13 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   viewModulos: {
-    marginTop: 30,
     flex: .4,
     width: '95%',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
   modulo: {
+    marginTop: 10,
     width: '48%'
   },
   imageModulo: {

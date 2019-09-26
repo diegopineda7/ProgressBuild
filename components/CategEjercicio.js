@@ -26,7 +26,7 @@ export default class CategEjercicio extends React.Component {
   render() {
     return (
       <View>
-        <TouchableOpacity style = {styles.tipo_ejercicio}
+        <TouchableOpacity style = {styles.tipoEjercicio}
           onPress = {() => {
             this.cambiarVisibilidad();
           }}
@@ -48,16 +48,17 @@ export default class CategEjercicio extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  tipo_ejercicio: {
+  tipoEjercicio: {
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: '100%',
     backgroundColor: 'rgba(' + mainColorRGB + ', .9)',
-    marginTop: 10,
-    height: 50
+    marginTop: 15,
+    height: 70,
+    borderRadius: 25
   },
   textTipo: {
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: 'bold',
     color: '#fff'
   },
