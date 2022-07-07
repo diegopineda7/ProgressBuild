@@ -11,7 +11,7 @@
     "expo": "^34.0.1",
     "expo-image-picker": "^6.0.0",
     "firebase": "^6.4.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongodb-stitch-browser-sdk": "^4.5.0",
     "mongodb-stitch-react-native-sdk": "^4.5.0",
     "native-base": "^2.13.4",
